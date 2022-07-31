@@ -12,31 +12,22 @@ import unittest
 
 def compress_string(s):
 
-    curr_char = s[0]
-    curr_char_count = 1
-
+    curr_char_count = 0
     res = []
 
-    for i in range(1,len(s)):
-        if s[i] == curr_char:
-            curr_char_count +=1
+    for i in range(len(s)):
         
-        if i == len(s)-1:
-            # we we are on the last char and this is a different char
-            if not curr_char_count:
-                curr_char_count+=1
-            res.append(curr_char + str(curr_char_count))
-        else:
-            if s[i+1] != curr_char:
-                res.append(curr_char + str(curr_char_count))
-                curr_char_count = 0
-                curr_char = s[i+1]
+        curr_char_count +=1
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+        if i+1 >= len(s) or s[i+1] != s[i]:
+            res.append(s[i] + str(curr_char_count))
+            curr_char_count = 0
+
     compressed_str = "".join(res)
  
     # only return the compressed str if it is less than 
     # the orig str
     return compressed_str if len(compressed_str) < len(s) else s
-
 
 class Test(unittest.TestCase):
     def test_1(self):
@@ -63,3 +54,33 @@ class Test(unittest.TestCase):
         actual = compress_string(s)
         self.assertEqual(expected,actual)
 unittest.main(verbosity=2)
+
+
+# old version (this version was simplified to the version above)
+
+# def compress_string(s):
+
+#     curr_char = s[0]
+#     curr_char_count = 1
+
+#     res = []
+
+#     for i in range(1,len(s)):
+#         if s[i] == curr_char:
+#             curr_char_count +=1
+        
+#         if i == len(s)-1:
+#             # we we are on the last char and this is a different char
+#             if not curr_char_count:
+#                 curr_char_count+=1
+#             res.append(curr_char + str(curr_char_count))
+#         else:
+#             if s[i+1] != curr_char:
+#                 res.append(curr_char + str(curr_char_count))
+#                 curr_char_count = 0
+#                 curr_char = s[i+1]
+#     compressed_str = "".join(res)
+ 
+#     # only return the compressed str if it is less than 
+#     # the orig str
+#     return compressed_str if len(compressed_str) < len(s) else s
