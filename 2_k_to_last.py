@@ -9,7 +9,6 @@ def k_to_last(linked_list, k):
     # advance the last node k spaces forward
     for _ in range(k):
         if last_node is not None:
-            print("Last node", last_node.data)
             last_node = last_node.next
         else:
             raise Exception("K is too large for LL")
