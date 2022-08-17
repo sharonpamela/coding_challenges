@@ -40,9 +40,6 @@ def find_2sum(nums, i, res):
         
 
 
-
-
-
 # first attempt:
     # if len(nums) < 3:
     #     return []
