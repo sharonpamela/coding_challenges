@@ -18,27 +18,34 @@ Output: -1
 
 
 def find_elem(nums, target):
-    l, r = 0, len(nums) - 1
+    
+    l,r = 0, len(nums)-1
 
-    while r <= r:
-        mid = (l + r) // 2
-        if target == nums[mid]:
-            return mid
-        
-        # left sorted side of array
-        if nums[l] <= nums[mid]:
+    while l <= r:
+        mid_idx = (r+l) // 2
+        mid_val = nums[mid_idx]
 
-            if target > nums[mid] or target < nums[l]:
-                l = mid + 1
+        if target == mid_val:
+            return mid_idx
+
+        if nums[l] <= mid_val:
+            # we are on the left sorted side of array
+            if target > mid_val or target < nums[l]:
+                # we sort the right most portion
+                l = mid_idx + 1
             else:
-                r = mid - 1
-
-        # right sorted side of array
+                # target < mid and target > left
+                # we sort the left right portion
+                r = mid_idx - 1
         else:
-            if target < nums[mid] or target > nums[r]:
-                r = mid - 1
+            # we are on the right sorted side of array
+            if target < mid_val or target > nums[r]:
+                r = mid_idx - 1
             else:
-                l = mid + 1
+                # target is > mid and target < rightmost
+                l = mid_idx + 1
+
     return -1
 
 print(find_elem([4,5,6,7,0,1,2], 3))
+

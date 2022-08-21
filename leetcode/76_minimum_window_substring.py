@@ -19,7 +19,6 @@ def min_window(s, t):
     if t == "": return ""
 
     count_t, window = {}, {}
-
     # initialize count_t with all char counts of t
     for c in t:
         count_t[c] = 1 + count_t.get(c,0)
@@ -33,17 +32,22 @@ def min_window(s, t):
 
         # does this count satisfy what we need?
         # skip all chars that we don't care about
-        if c in count_t and window[c] ==  count_t[c]:
-            have +=1
+        if c in count_t and window[c] == count_t[c]:
+            have += 1
 
         while have == need:
+            # update the result
             if (r - l + 1) < res_len:
                 res = [l, r]
                 res_len = (r - l + 1)
+            # remove chars from the left of the window
             window[s[l]] -= 1
             if s[l] in count_t and window[s[l]] < count_t[s[l]]:
                 have -= 1
             l += 1
-        l, r = res
-        return s[l:r+1] if res_len != float("inf") else ""
+    l, r = res
+    return s[l:r+1] if res_len != float("inf") else ""
 
+s = "ADOBECODEBANC"
+t = "ABC"
+print(min_window(s, t))
