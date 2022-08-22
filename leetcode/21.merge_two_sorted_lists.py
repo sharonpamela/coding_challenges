@@ -47,3 +47,27 @@ def merge_lists(list1, list2):
                 merged_last = merged_last.next
 
         return merged
+
+
+'''
+The aproach below is more simple.
+'''
+def merge_lists2(list1, list2):
+    
+    dummy = ListNode()
+    last = dummy
+    while list1 and list2:
+        if list1.val < list2.val:
+            last.next = list1
+            list1 = list1.next
+        else:
+            last.next = list2
+            list2 = list2.next
+        tail = tail.next
+    
+    if list1 is None:
+        last.next = list2
+    else:
+        last.next = list1
+    
+    return dummy.next

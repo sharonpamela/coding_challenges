@@ -38,7 +38,8 @@ print(get_biggest_container(height))
 
 # Brute Force
 
-'''def get_biggest_container(height):
+'''
+def get_biggest_container(height):
     max_area_seen = float('-inf')
     for i in range(len(height)):
         left_side = height[i]
@@ -47,4 +48,5 @@ print(get_biggest_container(height))
             h = min(left_side, right_side)
             w = j - i
             max_area_seen = max(max_area_seen, h*w)
-    return max_area_seen'''
+    return max_area_seen
+'''
