@@ -33,6 +33,7 @@ class Trie(object):
             if char not in node.children:
                 node.children[char] = TrieNode()
             node = node.children[char]
+        node.is_end_of_word = True
         
 
     def search(self, word):
@@ -45,7 +46,7 @@ class Trie(object):
             if char not in node.children:
                 return False
             node = node.children[char]
-        return True
+        return node.is_end_of_word
             
 
     def startsWith(self, prefix):
@@ -57,8 +58,8 @@ class Trie(object):
         for char in prefix:
             if char not in node.children:
                 return False
-            node = node.children
-        return node.is_end_of_word
+            node = node.children[char]
+        return True
 
 
 # Your Trie object will be instantiated and called as such:
