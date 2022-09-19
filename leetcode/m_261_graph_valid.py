@@ -26,9 +26,9 @@ def validTree(n, edges):
                 return False
             
             visited.add(node)
-            print("adding... ", visited)
             for neighbor in adj_list[node]:
-                if node == prev:
+                if neighbor == prev:
+                    # skip the neighbor that led to current node
                     continue
                 if not dfs(neighbor, node):
                     return False
